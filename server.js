@@ -15,7 +15,6 @@ const RegisterRouter = require("./routes/register")
 const { MONGO_URI,PORT } = require('./constants')
 
 // Middlewares
-
 app.use(express.json(),(err,req,res,next) => {      // bodyparse middle ware checks for valid body format
   if(err)
     res.sendStatus(400)
