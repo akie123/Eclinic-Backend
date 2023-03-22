@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
 const cors = require("cors")
-require("dotenv").config();
+const {checkValidToken} = require("./utils/jwt")
 
 // Routers
 const PatientRouter = require("./routes/patient")
@@ -15,8 +15,16 @@ const RegisterRouter = require("./routes/register")
 const { MONGO_URI,PORT } = require('./constants')
 
 // Middlewares
-app.use(express.json())
-app.use(cors())
+
+app.use(express.json(),(err,req,res,next) => {      // bodyparse middle ware checks for valid body format
+  if(err)
+    res.sendStatus(400)
+  else
+    next()
+})
+
+
+app.use(cors())      // cors middleware
 
 // Connection to Database
 mongoose.set("strictQuery", true);
@@ -31,8 +39,9 @@ mongoose.connect(MONGO_URI, {
 
 
 // Routes
-app.use("/login",LoginRouter)
-app.use("/register",RegisterRouter)
-app.use("/patient",PatientRouter)
-app.use("/doctor",DoctorRouter)
-app.use("/admin",AdminRouter)
+app.use("/login",LoginRouter)       // Login Router
+app.use("/register",RegisterRouter) // Register Router
+app.use(checkValidToken)            // Jwt Middleware
+app.use("/patient",PatientRouter)   // Patient Router
+app.use("/doctor",DoctorRouter)     // Doctor Router
+app.use("/admin",AdminRouter)       // Admin Router
