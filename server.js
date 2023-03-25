@@ -26,6 +26,7 @@ app.use(express.json(),(err,req,res,next) => {      // bodyparse middle ware che
 app.use(cors())      // cors middleware
 
 // Connection to Database
+okay
 mongoose.set("strictQuery", true);
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
