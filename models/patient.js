@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const state = require("./constants")
+const { state } = require("./constants");
 
 const patientSchema = mongoose.Schema({
   name: {
@@ -14,6 +14,7 @@ const patientSchema = mongoose.Schema({
   number: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -39,7 +40,7 @@ const patientSchema = mongoose.Schema({
   state: {
     type: String,
     required: true,
-    enum: state
+    enum: state,
   },
   profilePic: {
     type: String,

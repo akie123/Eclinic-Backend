@@ -34,7 +34,7 @@ const councils = [
   "Tripura Council",
   "Uttar Pradesh Council",
   "Uttarakhand Council",
-  "West Bengal Council"
+  "West Bengal Council",
 ];
 
 const states = [
@@ -74,7 +74,7 @@ const states = [
   "Tripura",
   "Uttar Pradesh",
   "Uttarakhand",
-  "West Bengal"
+  "West Bengal",
 ];
 
 const specialization = [
@@ -88,7 +88,7 @@ const specialization = [
   "Oncology",
   "Obstetrics and Gynecology",
   "Orthopedics",
-  "Psychiatry"
+  "Psychiatry",
 ];
 
-module.exports = {councils,states,specialization}
+module.exports = { councils, states, specialization };

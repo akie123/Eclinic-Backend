@@ -2,7 +2,6 @@ const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
 const cors = require("cors")
-const {checkValidToken} = require("./utils/jwt")
 
 // Routers
 const PatientRouter = require("./routes/patient")
@@ -10,6 +9,7 @@ const DoctorRouter = require("./routes/doctor")
 const AdminRouter = require("./routes/admin")
 const LoginRouter = require("./routes/login")
 const RegisterRouter = require("./routes/register")
+const ContactusRouter = require("./routes/contactus")
 
 // constanst
 const { MONGO_URI,PORT } = require('./constants')
@@ -38,9 +38,12 @@ mongoose.connect(MONGO_URI, {
 
 
 // Routes
-app.use("/login",LoginRouter)       // Login Router
-app.use("/register",RegisterRouter) // Register Router
-app.use(checkValidToken)            // Jwt Middleware
-app.use("/patient",PatientRouter)   // Patient Router
-app.use("/doctor",DoctorRouter)     // Doctor Router
-app.use("/admin",AdminRouter)       // Admin Router
+app.use("/login",LoginRouter)           // Login Router
+app.use("/register",RegisterRouter)     // Register Router
+app.use("/contact-us",ContactusRouter)  // Contact us Router
+app.use("/patient",PatientRouter)       // Patient Router
+app.use("/doctor",DoctorRouter)         // Doctor Router
+app.use("/admin",AdminRouter)           // Admin Router
+app.use("*",(req,res) => {
+  res.sendStatus(404)                   // No path found
+})

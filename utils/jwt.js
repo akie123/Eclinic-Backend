@@ -21,4 +21,15 @@ const checkValidToken = (req, res, next) => {
   }
 };
 
-module.exports = {generateToken,checkValidToken}
+const checkValidUser = (req,res,next) => {
+   const { id } = req.params;
+   if (id === req.user.id) {
+     next();
+   } else {
+     res.status(403).send({
+       err: "Unauthorized to view this page",
+     });
+   }
+}
+
+module.exports = {generateToken,checkValidToken,checkValidUser}

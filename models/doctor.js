@@ -1,40 +1,41 @@
 const mongoose = require("mongoose");
-const {councils,state,specialization} = require("./constants")
+const { councils, state, specialization } = require("./constants")
 
 const doctorSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   email: {
     type: String,
     require: true,
-    unique: true,
+    unique: true
   },
   number: {
     type: String,
     required: true,
+    unique: true
   },
   password: {
     type: String,
-    require: true,
+    require: true
   },
   gender: {
     type: String,
     required: true,
-    enum: ["male", "female", "other"],
+    enum: ["male", "female", "other"]
   },
   dob: {
     type: String,
-    required: true,
+    required: true
   },
   address: {
     type: String,
-    required: true,
+    required: true
   },
   city: {
     type: String,
-    required: true,
+    required: true
   },
   state: {
     type: String,
@@ -57,7 +58,11 @@ const doctorSchema = mongoose.Schema({
   spec: {
     type: String,
     required: true,
-    enum: specialization,
+    enum: specialization
+  },
+  verified: {
+    type: Boolean,
+    required: true
   },
   profilePic: {
     type: String,
