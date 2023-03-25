@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const SECRET_TOKEN = require("../constants");
 
 const generateToken = (data) => {
-  return jwt.sign(data, SECRET_TOKEN);
+  return jwt.sign(data, `${SECRET_TOKEN}`);
 };
 
 const checkValidToken = (req, res, next) => {
