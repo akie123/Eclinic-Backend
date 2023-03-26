@@ -8,9 +8,13 @@ const getSchedule = (req,res) => {
     })
 }
 
-const updateSchedule = (req,res) => {
+const updateSchedule = async(req,res) => {
     const {id} = req.params
-    Doctor.findByIdAndUpdate(id,req.body)
+    let tt= await Doctor.findById(id)
+    console.log(req.body)
+    tt.appointment=req.body
+
+    Doctor.findByIdAndUpdate(id,tt)
     .then(resp => {
         res.sendStatus(200)
     })
