@@ -65,6 +65,10 @@ const doctorSchema = mongoose.Schema({
     type: Boolean,
     required: true
   },
+  qualification:{
+    type:String,
+    required: true
+  },
   appointment : {
     type : Array ,
     "default" : []
