@@ -15,15 +15,14 @@ const ContactusRouter = require("./routes/contactus")
 const { MONGO_URI,PORT } = require('./constants')
 
 // Middlewares
-app.use(express.json(),(err,req,res,next) => {      // bodyparse middle ware checks for valid body format
-  if(err)
-    res.sendStatus(400)
-  else
-    next()
-})
-
-
 app.use(cors())      // cors middleware
+app.use(express.json({ limit: "2mb" }), (err, req, res, next) => {
+  // bodyparse middle ware checks for valid body format
+  if (err) 
+    res.sendStatus(400);
+  else 
+    next();
+});
 
 // Connection to Database
 
