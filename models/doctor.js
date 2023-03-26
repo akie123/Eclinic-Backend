@@ -36,7 +36,7 @@ const doctorSchema = mongoose.Schema({
   state: {
     type: String,
     required: true,
-    enum: state
+
   },
   reg: {
     type: String,
@@ -49,12 +49,12 @@ const doctorSchema = mongoose.Schema({
   stateC: {
     type: String,
     required: true,
-    enum: councils
+    // enum: councils
   },
   spec: {
     type: String,
     required: true,
-    enum: specialization
+
   },
   verified: {
     type: Boolean,

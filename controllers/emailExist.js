@@ -10,7 +10,7 @@ const EmailController = async(req,res) => {
             res.status(201).json({ check: "found" });
             return;
         }
-        const doctor = await Doctor.findOne({ check: req.params.email });
+        const doctor = await Doctor.findOne({ email: req.params.email });
         if (doctor) {
             res.status(201).json({ check: "found" });
             return;

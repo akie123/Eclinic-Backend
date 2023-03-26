@@ -3,7 +3,9 @@ const { hashPassword } = require("../utils/bcrypt")
 
 const DRController = async (req, res) => {
     req.body['verified'] = false
+
     req.body.password = hashPassword(req.body.password)
+    console.log(req.body)
     const new_user = new Doc(req.body)
     new_user.save()
     .then(() => {
@@ -11,7 +13,8 @@ const DRController = async (req, res) => {
             status: "ok",
         });
     })
-    .catch(() => {
+    .catch((err) => {
+        console.log(err)
         res.sendStatus(400);
     });
 }
