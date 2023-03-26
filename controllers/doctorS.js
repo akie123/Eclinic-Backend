@@ -4,6 +4,24 @@ const { hashPassword } = require("../utils/bcrypt")
 const DRController = async (req, res) => {
     req.body['verified'] = false
     req.body['fees'] = 500
+    req.body['appointment'] = [{
+        time:"12:00-12:30",
+        avb:true,
+        patientId:""
+    },{
+        time:"12:30-13:00",
+        avb:true,
+        patientId:""
+    },{
+        time:"13:00-13:30",
+        avb:true,
+        patientId:""
+    },{
+        time:"13:30-14:00",
+        avb:true,
+        patientId:""
+    }
+    ]
     req.body.password = hashPassword(req.body.password)
     console.log(req.body)
     const new_user = new Doc(req.body)

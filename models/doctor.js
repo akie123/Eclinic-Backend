@@ -65,6 +65,10 @@ const doctorSchema = mongoose.Schema({
     type: Boolean,
     required: true
   },
+  appointment : {
+    type : Array ,
+    "default" : []
+  },
   profilePic: {
     type: String,
     default:
