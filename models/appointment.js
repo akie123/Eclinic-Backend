@@ -8,13 +8,11 @@ const apSchema = mongoose.Schema({
     },
     idP: {
         type: String,
-        require: true,
-        unique: true
+        require: true
     },
     date: {
         type: Date,
-        required: true,
-        unique: true
+        required: true
     },
     time: {
         type: String,

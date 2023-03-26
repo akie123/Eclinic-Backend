@@ -7,19 +7,23 @@ const DRController = async (req, res) => {
     req.body['appointment'] = [{
         time:"12:00-12:30",
         avb:true,
-        patientId:""
+        patientId:"",
+        date: new Date().toDateString()
     },{
         time:"12:30-13:00",
         avb:true,
-        patientId:""
+        patientId:"",
+        date: new Date().toDateString()
     },{
         time:"13:00-13:30",
         avb:true,
-        patientId:""
+        patientId:"",
+        date: new Date().toDateString()
     },{
         time:"13:30-14:00",
         avb:true,
-        patientId:""
+        patientId:"",
+        date: new Date().toDateString()
     }
     ]
     req.body.password = hashPassword(req.body.password)

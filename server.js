@@ -12,7 +12,7 @@ const AdminRouter = require("./routes/admin")
 const LoginRouter = require("./routes/login")
 const RegisterRouter = require("./routes/register")
 const ContactusRouter = require("./routes/contactus")
-
+const CancelRouter = require("./routes/cancel")
 // constanst
 const { MONGO_URI,PORT } = require('./constants')
 
@@ -39,10 +39,31 @@ mongoose.connect(MONGO_URI, {
     })
 })
 
+const cron = require('node-cron');
+const Doctor = require('./models/doctor');
+
+cron.schedule('0 0 * * *', async () => {
+    let docs = await Doctor.find({});
+
+    for (let i = 0; i < docs.length; i++) {
+        for (let j = 0; j < docs[i].appointment.length; j++) {
+            const appointmentDate = docs[i].appointment[j].date;
+            const currentDate = new Date().toDateString();
+
+            if (docs[i].appointment[j].patientId!="" && appointmentDate != currentDate) {
+                docs[i].appointment[j].avb = true;
+                docs[i].appointment[j].patientId="";
+            }
+        }
+
+        await docs[i].save();
+    }
+});
 
 // Routes
 app.use("/login",LoginRouter)           // Login Router
 app.use("/register",RegisterRouter)     // Register Router
+app.use("/cancel",CancelRouter)
 app.use("/contact-us",ContactusRouter)  // Contact us Router
 app.use("/patient",PatientRouter)       // Patient Router
 app.use("/doctor",DoctorRouter)         // Doctor Router

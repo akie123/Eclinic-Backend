@@ -4,19 +4,15 @@ const { checkValidToken, checkValidUser } = require("../utils/jwt");
 const {UpdateDp,Update} = require("../controllers/update");
 const { getInfo } = require("../controllers/getinfo");
 const appointment = require("../controllers/appointment")
-const {getDoctors} = require("../controllers/getP")
 // Jwt Middleware
 router.use(checkValidToken);
-
-// Add slot
-router.post("/appointment",appointment)
-
-router.get("/getdoctors",getDoctors)
-
 router.use("/:id", checkValidUser);
 
 // DP update
 router.post("/:id/updatedp", UpdateDp);
+
+// Add slot
+router.post("/appointment",appointment)
 
 // Info update
 router.post("/:id/update",Update);
