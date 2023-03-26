@@ -2,6 +2,8 @@ const express = require("express")
 const mongoose = require("mongoose")
 const app = express()
 const cors = require("cors")
+const morgan = require("morgan")
+const {accessLogStream} = require("./utils/morgan")
 
 // Routers
 const PatientRouter = require("./routes/patient")
@@ -16,6 +18,7 @@ const { MONGO_URI,PORT } = require('./constants')
 
 // Middlewares
 app.use(cors())      // cors middleware
+app.use(morgan("tiny", { stream: accessLogStream }));
 app.use(express.json({ limit: "2mb" }), (err, req, res, next) => {
   // bodyparse middle ware checks for valid body format
   if (err) 
