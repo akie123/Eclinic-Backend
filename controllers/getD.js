@@ -8,4 +8,12 @@ const getSchedule = (req,res) => {
     })
 }
 
-module.exports = {getSchedule}
+const updateSchedule = (req,res) => {
+    const {id} = req.params
+    Doctor.findByIdAndUpdate(id,req.body)
+    .then(resp => {
+        res.sendStatus(200)
+    })
+}
+
+module.exports = {getSchedule,updateSchedule}

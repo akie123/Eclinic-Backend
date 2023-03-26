@@ -3,7 +3,7 @@ const router = Router();
 const { checkValidToken, checkValidUser } = require("../utils/jwt");
 const { UpdateDp, Update } = require("../controllers/update");
 const {getInfo} = require("../controllers/getinfo")
-const {getSchedule} = require("../controllers/getD")
+const {getSchedule,updateSchedule} = require("../controllers/getD")
 
 router.use(checkValidToken); // Jwt Middleware
 
@@ -19,5 +19,8 @@ router.get("/:id/getinfo",getInfo)
 
 // Schedule Manager
 router.get("/:id/getschedule",getSchedule)
+
+// Update Schedule Manager
+router.post("/:id/updateschedule",updateSchedule)
 
 module.exports = router;
